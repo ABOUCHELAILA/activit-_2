@@ -1,15 +1,18 @@
 package org.sid.bank_account_service.entities;
-
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jdk.jshell.Snippet;
+import lombok.Builder;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
+import org.sid.bank_account_service.enums.AccountType;
 
 import java.time.LocalDate;
 import java.util.Date;
+
 @Entity
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -17,11 +20,12 @@ import java.util.Date;
 public class BankAccount {
 
    @Id
-   private String accountId;
+   private String id;
    private double balance;
-   private LocalDate createAt;
+   private Date createdAt;
    private String currency;
-
+   @Enumerated(EnumType.STRING)
+   private AccountType type;
 
 
 
