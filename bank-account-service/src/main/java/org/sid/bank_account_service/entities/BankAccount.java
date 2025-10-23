@@ -24,6 +24,7 @@ public class BankAccount {
    private double balance;
    private Date createdAt;
    private String currency;
+
    @Enumerated(EnumType.STRING)
    private AccountType type;
 
