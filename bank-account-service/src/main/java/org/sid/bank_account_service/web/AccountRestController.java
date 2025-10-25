@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class AccountRestController {
@@ -29,7 +30,10 @@ public class AccountRestController {
                 .orElseThrow(() -> new RuntimeException(String.format("Account %s not found", id)));
     }
     @PostMapping("/bankAccounts")
-    public BankAccount save(@RequestBody BankAccount bankAccount){
+    public BankAccount save(@RequestBody BankAccount bankAccount) {
+        if (bankAccount.getId() == null) {
+            bankAccount.setId(UUID.randomUUID().toString());
+        }
         return bankAccountRepository.save(bankAccount);
     }
 
